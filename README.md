@@ -2,6 +2,8 @@
 
 This is another semi-vibecoding project: desktop application for macOS to record your screen (with optional audio and region selection), built with Go, Fyne, and ffmpeg.
 
+![image](https://github.com/user-attachments/assets/a3fd4f7a-ed3c-41e6-ab02-b016a6c471da)
+
 ## Features
 - Select screen and audio device (auto-detected)
 - Select full screen or region (by mouse, with live feedback)
