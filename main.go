@@ -261,12 +261,13 @@ func main() {
 		if x != "" && y != "" && w != "" && h != "" {
 			cropArgs = fmt.Sprintf("crop=%s:%s:%s:%s", w, h, x, y)
 		}
-		args := []string{"-f", "avfoundation", "-framerate", "25", "-capture_cursor", "1"}
+		args := []string{"-f", "avfoundation", "-framerate", "25", "-capture_cursor", "1", "-loglevel", "quiet"}
 		input := selectedVideo
 		if recordAudio && selectedAudio != "" {
 			input = fmt.Sprintf("%s:%s", selectedVideo, selectedAudio)
 		}
 		args = append(args, "-i", input)
+		args = append(args,"-ar", "44100", "-ac", "2", "-probesize", "100M", "-analyzeduration", "100M", "-async", "1")
 		if cropArgs != "" {
 			args = append(args, "-vf", cropArgs)
 		}
