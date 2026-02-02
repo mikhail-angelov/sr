@@ -1,6 +1,7 @@
 import Foundation
-import ScreenCaptureKit
-import AVFoundation
+@preconcurrency import ScreenCaptureKit
+@preconcurrency import AVFoundation
+@preconcurrency import CoreMedia
 
 @MainActor
 class RecorderEngine: ObservableObject {
@@ -228,7 +229,7 @@ class RecorderEngine: ObservableObject {
     }
 }
 
-class CaptureDelegate: NSObject, SCStreamDelegate, SCStreamOutput {
+class CaptureDelegate: NSObject, SCStreamDelegate, SCStreamOutput, @unchecked Sendable {
     private var assetWriter: AVAssetWriter?
     private var videoInput: AVAssetWriterInput?
     private var audioInput: AVAssetWriterInput?
