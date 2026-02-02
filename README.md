@@ -2,7 +2,8 @@
 
 A high-performance, native macOS screen recording application built with **Swift**, **SwiftUI**, and **ScreenCaptureKit**. This app provides high-fidelity video and audio capture with a minimal screen footprint.
 
-![image](https://github.com/user-attachments/assets/a3fd4f7a-ed3c-41e6-ab02-b016a6c471da)
+<img width="254" height="355" alt="image" src="https://github.com/user-attachments/assets/1c4aab53-da17-4995-82a9-752a54cbbffe" />
+
 
 ## Features
 
