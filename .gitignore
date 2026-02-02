@@ -1,2 +1,8 @@
-sr
-*.mp4
+.DS_Store
+.build/
+/Packages
+xcuserdata/
+DerivedData/
+.swiftpm/
+.netrc
+ScreenRecorder.app/

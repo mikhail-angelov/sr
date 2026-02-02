@@ -1,0 +1,46 @@
+name: Build and Release
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  release:
+    name: Build and Release
+    runs-on: macos-latest
+    permissions:
+      contents: write
+
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+
+      - name: Build ScreenRecorder (Universal Binary)
+        run: swift build -c release --arch arm64 --arch x86_64
+
+      - name: Package Application Bundle (.app)
+        run: |
+          # Create bundle structure
+          mkdir -p ScreenRecorder.app/Contents/MacOS
+          mkdir -p ScreenRecorder.app/Contents/Resources
+          
+          # Copy Binary
+          cp .build/apple/Products/Release/ScreenRecorder ScreenRecorder.app/Contents/MacOS/
+          
+          # Copy Info.plist
+          cp Sources/Info.plist ScreenRecorder.app/Contents/Info.plist
+          
+          # Zip the bundle
+          zip -r ScreenRecorder.zip ScreenRecorder.app
+
+      - name: Create Release
+        uses: softprops/action-gh-release@v2
+        with:
+          tag_name: latest
+          name: Latest Build
+          files: ScreenRecorder.zip
+          draft: false
+          prerelease: false
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
